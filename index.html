@@ -11,19 +11,30 @@
     <script>
         THREEx.ArToolkitContext.baseURL = 'https://raw.githack.com/jeromeetienne/ar.js/master/three.js/'
     </script>
+    <script>
+        var x = document.getElementById("demo");
+        function getLocation() {
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+          } else {
+            x.innerHTML = "Geolocation is not supported by this browser.";
+          }
+        }
+        
+        function showPosition(position) {
+          x.innerHTML = "Latitude: " + position.coords.latitude +
+          "<br>Longitude: " + position.coords.longitude;
+        }
+        </script>
 </head>
 
 <body style='margin: 0; overflow: hidden;'>
     <a-scene
-       vr-mode-ui="enabled: false"
+        vr-mode-ui="enabled: false"
 		embedded
         arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;'>
-<<<<<<< HEAD
-        <a-entity gltf-model="./assets/magnemite/BirdRobot.gltf" gps-entity-place= "longitude: 44.6264696; latitude: -75.9467885;" />/></a-entity>
-=======
-        <a-entity gltf-model="./assets/magnemite/BirdRobot.gltf" gps-entity-place= "longitude: 43.6817867; latitude: -79.7385197;" />/></a-entity>
->>>>>>> e05bc9ddae1ae1b51aee0b3a8e0c4913cb4b6d14
-        <a-camera gps-camera rotation-reader>
-		</a-camera>
+        <a-entity gltf-model="./assets/magnemite/scene.gltf" rotation="0 180 0" scale="0.15 0.15 0.15" gps-entity-place=  "Latitude: " + position.coords.latitude + "Longitude: " + position.coords.longitude; animation-mixer/>
+        
+        <a-camera gps-camera rotation-reader></a-camera>
 	</a-scene>
-</body> 
+</body>
